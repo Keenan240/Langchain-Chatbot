@@ -37,6 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (axios.isAxiosError(error)) {
         console.error('Status:', error.response?.status)
         console.error('Data:', error.response?.data)
+        console.error('Headers:', error.response?.headers)
       } else {
         console.error('Message:', (error as Error).message)
       }
