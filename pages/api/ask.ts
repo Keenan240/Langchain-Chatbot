@@ -1,6 +1,6 @@
 // pages/api/ask.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { fetchPageContent } from '../../lib/fetchPageContent'
+import { fetchPageContent } from '@/lib/fetchPageContent'
 import axios from 'axios'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -32,16 +32,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const reply = openRouterResponse.data.choices[0].message.content
     res.status(200).json({ answer: reply })
-    } catch (error: any) {
-        console.error("❌ OpenRouter API Error:");
-        if (error.response) {
-        console.error("Status:", error.response.status);
-        console.error("Data:", error.response.data);
-        } else {
-        console.error("Message:", error.message);
-        }
+    } catch (error: unknown) {
+      console.error('❌ OpenRouter API Error:')
+      if (axios.isAxiosError(error)) {
+        console.error('Status:', error.response?.status)
+        console.error('Data:', error.response?.data)
+      } else {
+        console.error('Message:', (error as Error).message)
+      }
     
-        res.status(500).json({ answer: 'Failed to get a response' });
+      res.status(500).json({ answer: 'Failed to get a response' });
     }
   
 }
