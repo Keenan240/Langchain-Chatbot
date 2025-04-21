@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect  } from 'react'
-import '../styles/style.css'
 
 interface Message {
   text: string
