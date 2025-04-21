@@ -1,6 +1,6 @@
 // pages/api/ask.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { fetchPageContent } from '@/lib/fetchPageContent'
+import { fetchPageContent } from '../../lib/fetchPageContent'
 import axios from 'axios'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
